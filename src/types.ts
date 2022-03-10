@@ -16,3 +16,20 @@ export type RefreshTokensStore = Map<string, string[]>
 export type DecodedToken = {
   sub: string;
 }
+
+type ProcessData = {
+    processo:string,
+    ocorrencia: string,
+    alimentador: string,
+    situacao: string,
+    localidadade: string,
+    abertura: string,
+    ultimaAcao:string,
+    pop: string,
+    bo: boolean,
+    condutor: boolean,
+    foto: boolean,
+    orcamento: boolean
+}
+
+export type Process = Map<string, ProcessData>

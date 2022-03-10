@@ -1,11 +1,11 @@
 import cors from 'cors';
-import express, { NextFunction, Request, Response } from 'express';
+import express, { NextFunction, Request, response, Response } from 'express';
 import jwt from 'jsonwebtoken'
 import decode from 'jwt-decode'
 import { generateJwtAndRefreshToken } from './auth';
 import { auth } from './config';
 
-import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken } from './database';
+import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes } from './database';
 import { CreateSessionDTO, DecodedToken } from './types';
 
 const app = express();
@@ -164,5 +164,16 @@ app.get('/me', checkAuthMiddleware, (request, response) => {
     roles: user.roles,
   })
 });
+
+/*app.get('/processos', (request, response)=>{
+  
+  const processe = processes.get('');
+  
+  return response.json({
+    processo,
+    ocorrencia,
+
+  })
+})*/
 
 app.listen(3333);
