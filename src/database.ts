@@ -21,39 +21,36 @@ export function seedUserStore() {
 
 export function seedProcess(){
   processes.set('',
-    {
-      processo:'1',
-      ocorrencia: '90123456',
-      alimentador: '54564',
-      situacao: "Novo",
-      localidadade: "Cuiaba",
-      abertura: "10/12/2021",
-      ultimaAcao:"08/03/2022",
-      pop: "true",
-      bo: true,
-      condutor: true,
-      foto: false,
-      orcamento: false
-    }
-  )
-  processes.set('',
-    {
-      processo:'2',
-      ocorrencia: '90123456',
-      alimentador: '54564',
-      situacao: "Cancelado",
-      localidadade: "Cuiaba",
-      abertura: "10/12/2021",
-      ultimaAcao:"08/03/2022",
-      pop: "false",
-      bo: false,
-      condutor: true,
-      foto: false,
-      orcamento: false
-    }
-  )
-  processes.set('',
-    {
+    [
+      {
+        processo:'1',
+        ocorrencia: '90123456',
+        alimentador: '54564',
+        situacao: "Novo",
+        localidadade: "Cuiaba",
+        abertura: "10/12/2021",
+        ultimaAcao:"08/03/2022",
+        pop: "true",
+        bo: true,
+        condutor: true,
+        foto: false,
+        orcamento: false
+      },
+      {
+        processo:'2',
+        ocorrencia: '90123456',
+        alimentador: '54564',
+        situacao: "Cancelado",
+        localidadade: "Cuiaba",
+        abertura: "10/12/2021",
+        ultimaAcao:"08/03/2022",
+        pop: "false",
+        bo: false,
+        condutor: true,
+        foto: false,
+        orcamento: false
+      },
+      {
       processo:'3',
       ocorrencia: '90123456',
       alimentador: '54564',
@@ -66,7 +63,8 @@ export function seedProcess(){
       condutor: false,
       foto: true,
       orcamento: true
-    }
+    },  
+  ]
   )
 
 }

@@ -32,4 +32,4 @@ type ProcessData = {
     orcamento: boolean
 }
 
-export type Process = Map<string, ProcessData>
+export type Process = Map<string, ProcessData[]>
