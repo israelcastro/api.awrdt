@@ -32,4 +32,18 @@ type ProcessData = {
     orcamento: boolean
 }
 
+
 export type Process = Map<string, ProcessData[]>
+
+type LocalidadeData = {
+  id: number;
+  local:string;
+}
+export type Localidade = Map<string, LocalidadeData[]>
+
+type SituacaoData ={
+  id: number;
+  situacao:string;
+}
+
+export type Situacao = Map<string, SituacaoData[]>

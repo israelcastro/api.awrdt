@@ -1,8 +1,10 @@
-import { Process, RefreshTokensStore, UsersStore } from "./types"
+import { Localidade, Process, RefreshTokensStore, Situacao, UsersStore } from "./types"
 import { v4 as uuid } from 'uuid'
 
 export const users: UsersStore = new Map()
 export const processes: Process = new Map()
+export const localidades: Localidade = new Map()
+export const situacoes: Situacao = new Map()
 export const tokens: RefreshTokensStore = new Map()
 
 export function seedUserStore() {
@@ -17,6 +19,26 @@ export function seedUserStore() {
     permissions: ['users.list', 'metrics.list'],
     roles: ['editor']
   })
+}
+export function seedLocalidade(){
+  localidades.set('',[
+    
+    {id:0, local:"Cuiaba"},
+    {id:1, local:"Tocantis"},
+    {id:2, local:"Cataguases"},
+    
+  ])
+}
+
+export function seedSituacao(){
+  situacoes.set('',[
+    
+    {id:0, situacao: 'Novo'},
+    {id:1, situacao: 'Cancelado'},
+    {id:2, situacao: 'Em andamento'},
+    {id:3, situacao: 'Encerrado'},
+    
+  ])
 }
 
 export function seedProcess(){
@@ -63,7 +85,21 @@ export function seedProcess(){
       condutor: false,
       foto: true,
       orcamento: true
-    },  
+    },
+    {
+      processo:'4',
+      ocorrencia: '90123456',
+      alimentador: '54564',
+      situacao: "Novo",
+      localidadade: "Tocantis",
+      abertura: "10/12/2021",
+      ultimaAcao:"08/03/2022",
+      pop: "true",
+      bo: true,
+      condutor: true,
+      foto: false,
+      orcamento: false
+    }, 
   ]
   )
 
