@@ -4,6 +4,7 @@ export type CreateSessionDTO = {
 }
 
 type UserData = {
+  name: string;
   password: string;
   permissions: string[];
   roles: string[];
@@ -18,6 +19,7 @@ export type DecodedToken = {
 }
 
 type ProcessData = {
+    id: string,
     processo:string,
     ocorrencia: string,
     alimentador: string,
@@ -25,7 +27,7 @@ type ProcessData = {
     localidadade: string,
     abertura: string,
     ultimaAcao:string,
-    pop: string,
+    pop: boolean,
     bo: boolean,
     condutor: boolean,
     foto: boolean,
