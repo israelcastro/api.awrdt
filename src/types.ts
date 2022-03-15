@@ -43,7 +43,21 @@ export type Localidade = Map<string, LocalidadeData[]>
 
 type SituacaoData ={
   id: number;
-  situacao:string;
+  value:string;
 }
 
 export type Situacao = Map<string, SituacaoData[]>
+
+type SituacaoFormData ={
+  id: number;
+  value:string;
+}
+
+export type SituacaoForm = Map<string, SituacaoFormData[]>
+
+type OrigemData ={
+  id: number;
+  value:string;
+}
+
+export type Origem = Map<string, OrigemData[]>

@@ -1,10 +1,12 @@
-import { Localidade, Process, RefreshTokensStore, Situacao, UsersStore } from "./types"
+import { Localidade, Process, RefreshTokensStore, Situacao, UsersStore, Origem, SituacaoForm } from "./types"
 import { v4 as uuid } from 'uuid'
 
 export const users: UsersStore = new Map()
 export const processes: Process = new Map()
 export const localidades: Localidade = new Map()
 export const situacoes: Situacao = new Map()
+export const situacoesForm: SituacaoForm = new Map()
+export const origens: Origem = new Map()
 export const tokens: RefreshTokensStore = new Map()
 
 export function seedUserStore() {
@@ -33,10 +35,29 @@ export function seedLocalidade(){
 export function seedSituacao(){
   situacoes.set('',[
     
-    {id:0, situacao: 'Novo'},
-    {id:1, situacao: 'Cancelado'},
-    {id:2, situacao: 'Em andamento'},
-    {id:3, situacao: 'Encerrado'},
+    {id:0, value: 'Novo'},
+    {id:1, value: 'Cancelado'},
+    {id:2, value: 'Em andamento'},
+    {id:3, value: 'Encerrado'},
+    
+  ])
+}
+
+export function seedSituacaoForm(){
+  situacoesForm.set('',[   
+    
+    {id:0, value: 'Em andamento'},
+    {id:1, value: 'Encerrado'},
+    {id:2, value: 'Concluído'},
+    
+  ])
+}
+
+export function seedOrigem(){
+  origens.set('',[
+    
+    {id:0, value: 'Manual'},
+    {id:1, value: 'Automático'},
     
   ])
 }

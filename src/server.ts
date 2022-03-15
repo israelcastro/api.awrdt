@@ -5,7 +5,7 @@ import decode from 'jwt-decode'
 import { generateJwtAndRefreshToken } from './auth';
 import { auth } from './config';
 
-import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes } from './database';
+import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm} from './database';
 import { CreateSessionDTO, DecodedToken } from './types';
 
 const app = express();
@@ -17,6 +17,8 @@ seedUserStore();
 seedProcess();
 seedLocalidade();
 seedSituacao();
+seedOrigem();
+seedSituacaoForm();
 
 function checkAuthMiddleware(request: Request, response: Response, next: NextFunction) {
   const { authorization } = request.headers;
@@ -182,6 +184,16 @@ app.get('/localidades',(request, response)=>{
 app.get('/situacoes',(request, response)=>{
   const situacao = situacoes.get('');
   return response.json(situacao)
+})
+
+app.get('/situacoesForm',(request, response)=>{
+  const situacaoForm = situacoesForm.get('');
+  return response.json(situacaoForm)
+})
+
+app.get('/origens',(request, response)=>{
+  const origem = origens.get('');
+  return response.json(origem)
 })
 
 app.listen(3333);
