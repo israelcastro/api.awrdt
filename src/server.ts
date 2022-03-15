@@ -183,7 +183,7 @@ app.get('/processos/:process', (request, response)=>{
   let processeList: any = processes.get(''); 
   
   for (let process of processeList) {
-    if (process.processo === processId) {
+    if (process.id === processId) {
         response.json(process);
         return; 
     }
