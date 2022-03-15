@@ -81,7 +81,7 @@ function addUserInformationToRequest(request: Request, response: Response, next:
 
 app.post('/sessions', (request, response) => {
   const { email, password } = request.body as CreateSessionDTO;
-
+  
   const user = users.get(email);
 
   if (!user || password !== user.password) {
@@ -96,11 +96,13 @@ app.post('/sessions', (request, response) => {
   const { token, refreshToken } = generateJwtAndRefreshToken(email, {
     permissions: user.permissions,
     roles: user.roles,
+    name: user.name,
   })
 
   return response.json({
     token,
     refreshToken,
+    name: user.name,
     permissions: user.permissions,
     roles: user.roles,
   });
@@ -163,6 +165,7 @@ app.get('/me', checkAuthMiddleware, (request, response) => {
 
   return response.json({
     email,
+    name: user.name,
     permissions: user.permissions,
     roles: user.roles,
   })
@@ -173,6 +176,26 @@ app.get('/processos', (request, response)=>{
   const processe = processes.get('');  
   return response.json(processe);
 })
+
+app.get('/processos/:process', (request, response)=>{
+  
+  const processId = request.params.process;
+  let processeList: any = processes.get(''); 
+  
+  for (let process of processeList) {
+    if (process.processo === processId) {
+        response.json(process);
+        return; 
+    }
+  }
+
+  response.status(404).send('Processo não encontrado');
+
+  
+})
+
+
+
 
 app.get('/localidades',(request, response)=>{
   const locais = localidades.get('');

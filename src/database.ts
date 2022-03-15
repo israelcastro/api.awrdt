@@ -9,12 +9,14 @@ export const tokens: RefreshTokensStore = new Map()
 
 export function seedUserStore() {
   users.set('israel.correia@gmail.com', {
+    name: 'Israel Castro',
     password: '123456',
     permissions: ['users.list', 'users.create', 'metrics.list'],
     roles: ['administrator']
   })
 
   users.set('douglas.romano@energisa.com.br', {
+    name: 'Douglas Davi',
     password: '123456',
     permissions: ['users.list', 'metrics.list'],
     roles: ['editor']
@@ -45,6 +47,7 @@ export function seedProcess(){
   processes.set('',
     [
       {
+        id: '1',
         processo:'1',
         ocorrencia: '90123456',
         alimentador: '54564',
@@ -52,13 +55,14 @@ export function seedProcess(){
         localidadade: "Cuiaba",
         abertura: "10/12/2021",
         ultimaAcao:"08/03/2022",
-        pop: "true",
+        pop: true,
         bo: true,
         condutor: true,
         foto: false,
         orcamento: false
       },
       {
+        id: '2',
         processo:'2',
         ocorrencia: '90123456',
         alimentador: '54564',
@@ -66,13 +70,14 @@ export function seedProcess(){
         localidadade: "Cuiaba",
         abertura: "10/12/2021",
         ultimaAcao:"08/03/2022",
-        pop: "false",
+        pop: false,
         bo: false,
         condutor: true,
         foto: false,
         orcamento: false
       },
       {
+      id: '3',
       processo:'3',
       ocorrencia: '90123456',
       alimentador: '54564',
@@ -80,13 +85,14 @@ export function seedProcess(){
       localidadade: "Cuiaba",
       abertura: "10/12/2021",
       ultimaAcao:"08/03/2022",
-      pop: "true",
+      pop: true,
       bo: false,
       condutor: false,
       foto: true,
       orcamento: true
     },
     {
+      id: '4',
       processo:'4',
       ocorrencia: '90123456',
       alimentador: '54564',
@@ -94,7 +100,7 @@ export function seedProcess(){
       localidadade: "Tocantis",
       abertura: "10/12/2021",
       ultimaAcao:"08/03/2022",
-      pop: "true",
+      pop: true,
       bo: true,
       condutor: true,
       foto: false,
