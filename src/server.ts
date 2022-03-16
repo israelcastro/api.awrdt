@@ -173,31 +173,87 @@ app.get('/me', checkAuthMiddleware, (request, response) => {
   })
 });
 
-app.get('/processos', (request, response)=>{
+app.get('/processos', (request, response)=> {
   
-  const processe = processes.get('');  
-  return response.json(processe);
+
+  let page : any = parseInt(request.query.page as string);
+  const limit: any = parseInt(request.query.limit as string);
+  const results : any = {}
+  const processList: any = processes.get('');
+
+  let arrList : Array<Object> = [] 
+  
+  results.count = processList?.length
+
+  if(page >= 0) {
+    let count = 0
+    processList.forEach(function (item : any, indice : any, array : any) {    
+      if(indice >= page && count < limit ) {
+        arrList.push(item)
+        count = count + 1
+      }  
+    });    
+          
+    results.results = arrList
+
+    console.log(results.results)
+    return response.json(results);
+  }
+  else {
+    results.results = processList
+    return response.json(results);
+  }
+
 })
 
-app.get('/processos/:process', (request, response)=>{
+app.get('/processlist', (request, response)=>{
+  
+  let page : any = parseInt(request.query.page as string);
+  const limit: any = parseInt(request.query.limit as string);
+  const results : any = {}
+  const processList: any = processes.get('');
+
+  let arrList : Array<Object> = []
+
+   
+
+  if(page >= 0) {
+    let count = 0
+    processList.forEach(function (item : any, indice : any, array : any) {    
+      if(indice >= page && count < limit ) {
+        arrList.push(item)
+        count = count + 1
+      }  
+    });
+    
+    
+    results.count = processList?.length  
+    results.results = arrList
+
+    console.log(results.results)
+    return response.json(results);
+  } else {
+    results.results = processList
+    return response.json(results);
+  }
+  
+})
+
+app.get('/processosid/:process', (request, response) => {
   
   const processId = request.params.process;
   let processeList: any = processes.get(''); 
   
   for (let process of processeList) {
-    if (process.processo === processId) {
+    if (process.id === processId) {
         response.json(process);
         return; 
     }
   }
 
-  response.status(404).send('Processo não encontrado');
+  response.status(404).send('Processo não encontrado'); 
 
-  
 })
-
-
-
 
 app.get('/localidades',(request, response)=>{
   const locais = localidades.get('');
@@ -209,14 +265,5 @@ app.get('/situacoes',(request, response)=>{
   return response.json(situacao)
 })
 
-app.get('/situacoesForm',(request, response)=>{
-  const situacaoForm = situacoesForm.get('');
-  return response.json(situacaoForm)
-})
-
-app.get('/origens',(request, response)=>{
-  const origem = origens.get('');
-  return response.json(origem)
-})
 
 app.listen(3333);

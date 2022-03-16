@@ -65,6 +65,7 @@ export function seedOrigem(){
 }
 
 export function seedProcess(){
+<<<<<<< HEAD
   processes.set('',
     [
       {
@@ -133,6 +134,43 @@ export function seedProcess(){
     }, 
   ]
   )
+=======
+  
+  let arrProcesses = []
+  let rangeYear = ['2019','2020','2021', '2022', '2019']
+  let rangeSituation = ['Novo', 'Cancelado' , 'Em Andamento' , 'Em Andamento', 'Novo']
+  let rangeCondutor = ['João Antonio da Silva', 'Carlos José de Sousa' , 'Manoel Benedito Pereira' , 'Mariana Costa da Silva', 'Pedro Francisco Santana']
+  let rangeAddress = [ ['Palmas' , 'TO'], ['Cuiaba' , 'MT'], ['Belo Horizonte' , 'MG'], ['Cáceres' , 'MT'], ['Rondonópolis' , 'MT']]
+  let rangeBoolean = [true, false, false, true, false]
+  let rangeBoolean2 = [false, false, true, true, false]
+  let count = 0
+
+  for (let index = 1; index <= 100; index++) {
+    
+    arrProcesses.push({
+      id: '' + index,
+      processo: rangeYear[count] + (Math.floor(Math.random() * 99999) + 10000),
+      ocorrencia: '' + (Math.floor(Math.random() * 99999999) + 10000000),
+      alimentador: '' + (Math.floor(Math.random() * 99999) + 10000),
+      situacao: rangeSituation[count],
+      localidadade: rangeAddress[count][0],
+      abertura: "10/12/2021",
+      ultimaAcao:"08/03/2022",
+      pop:'' + (Math.floor(Math.random() * 99999) + 10000) ,
+      bo: (Math.floor(Math.random() * 99999) + 10000) + '/' + rangeAddress[count][1] ,
+      condutor: rangeCondutor[count],
+      foto: rangeBoolean[count],
+      orcamento: rangeBoolean2[count]
+    })    
+    count ++
+    
+    if(count == 5) { count = 0 }
+
+  }
+  
+  
+  processes.set('',arrProcesses )
+>>>>>>> 1dc1657eab172e3d919ea11f91fb1d5b6fa5ddbd
 
 }
 export function createRefreshToken(email: string) {
