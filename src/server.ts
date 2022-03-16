@@ -243,7 +243,7 @@ app.get('/processlist', (request, response)=>{
   
 })
 
-app.get('/processosid/:process', (request, response) => {
+app.get('/processos/:process', (request, response) => {
   
   const processId = request.params.process;
   let processeList: any = processes.get(''); 
