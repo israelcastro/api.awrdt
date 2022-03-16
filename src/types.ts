@@ -27,9 +27,9 @@ type ProcessData = {
     localidadade: string,
     abertura: string,
     ultimaAcao:string,
-    pop: boolean,
-    bo: boolean,
-    condutor: boolean,
+    pop: string,
+    bo: string,
+    condutor: string,
     foto: boolean,
     orcamento: boolean
 }
