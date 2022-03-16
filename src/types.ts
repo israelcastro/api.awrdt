@@ -24,6 +24,7 @@ type ProcessData = {
     ocorrencia: string,
     alimentador: string,
     situacao: string,
+    idSituacao: number,
     localidadade: string,
     abertura: string,
     ultimaAcao:string,
