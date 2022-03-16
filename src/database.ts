@@ -27,9 +27,9 @@ export function seedUserStore() {
 export function seedLocalidade(){
   localidades.set('',[
     
-    {id:0, local:"Cuiaba"},
-    {id:1, local:"Tocantis"},
-    {id:2, local:"Cataguases"},
+    {id:1, local:"Cuiaba"},
+    {id:2, local:"Tocantis"},
+    {id:3, local:"Cataguases"},
     
   ])
 }
@@ -59,7 +59,7 @@ export function seedOrigem(){
   origens.set('',[
     
     {id:0, value: 'Manual'},
-    {id:1, value: 'Automático'},
+    {id:1, value: 'Automático'}
     
   ])
 }
@@ -75,14 +75,14 @@ export function seedProcess(){
   let rangeBoolean2 = [false, false, true, true, false]
   let count = 0
 
-  for (let index = 1; index <= 100; index++) {
+  for (let index = 1; index <= 1000; index++) {
     
     arrProcesses.push({
       id: '' + index,
       processo: rangeYear[count] + (Math.floor(Math.random() * 99999) + 10000),
       ocorrencia: '' + (Math.floor(Math.random() * 99999999) + 10000000),
       alimentador: '' + (Math.floor(Math.random() * 99999) + 10000),
-      situacao: rangeSituation[count],
+      idSituacao: rangeSituation[count],
       localidadade: rangeAddress[count][0],
       abertura: "10/12/2021",
       ultimaAcao:"08/03/2022",
