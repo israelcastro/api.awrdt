@@ -70,7 +70,7 @@ export function seedProcess(){
   let rangeYear = ['2019','2020','2021', '2022', '2019']
   let rangeSituation = [1, 2, 3, 4, 1]
   let rangeCondutor = ['João Antonio da Silva', 'Carlos José de Sousa' , 'Manoel Benedito Pereira' , 'Mariana Costa da Silva', 'Pedro Francisco Santana']
-  let rangeAddress = [ ['Palmas' , 'TO'], ['Cuiaba' , 'MT'], ['Belo Horizonte' , 'MG'], ['Cáceres' , 'MT'], ['Rondonópolis' , 'MT']]
+  let rangeAddress = [ ['Palmas' , 'TO'], ['Cuiaba' , 'MT'], ['Belo Horizonte' , 'MG'], ['Cáceres' , 'MT'], ['Rondonópolis' , 'MT']] 
   let rangeBoolean = [true, false, false, true, false]
   let rangeBoolean2 = [false, false, true, true, false]
   let count = 0
