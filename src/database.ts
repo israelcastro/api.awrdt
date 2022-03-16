@@ -37,10 +37,10 @@ export function seedLocalidade(){
 export function seedSituacao(){
   situacoes.set('',[
     
-    {id:0, value: 'Novo'},
-    {id:1, value: 'Cancelado'},
-    {id:2, value: 'Em andamento'},
-    {id:3, value: 'Encerrado'},
+    {id:1, value: 'Novo'},
+    {id:2, value: 'Cancelado'},
+    {id:3, value: 'Em andamento'},
+    {id:4, value: 'Encerrado'},
     
   ])
 }
@@ -65,80 +65,10 @@ export function seedOrigem(){
 }
 
 export function seedProcess(){
-<<<<<<< HEAD
-  processes.set('',
-    [
-      {
-        id: '1',
-        processo:'1',
-        ocorrencia: '90123456',
-        alimentador: '54564',
-        situacao: "Novo",
-        idSituacao: 0,
-        localidadade: "Cuiaba",
-        abertura: "10/12/2021",
-        ultimaAcao:"08/03/2022",
-        pop: true,
-        bo: true,
-        condutor: true,
-        foto: false,
-        orcamento: false
-      },
-      {
-        id: '2',
-        processo:'2',
-        ocorrencia: '90123456',
-        alimentador: '54564',
-        situacao: "Cancelado",
-        idSituacao:1,
-        localidadade: "Cuiaba",
-        abertura: "10/12/2021",
-        ultimaAcao:"08/03/2022",
-        pop: false,
-        bo: false,
-        condutor: true,
-        foto: false,
-        orcamento: false
-      },
-      {
-      id: '3',
-      processo:'3',
-      ocorrencia: '90123456',
-      alimentador: '54564',
-      situacao: "Em andamento",
-      idSituacao: 2,
-      localidadade: "Cuiaba",
-      abertura: "10/12/2021",
-      ultimaAcao:"08/03/2022",
-      pop: true,
-      bo: false,
-      condutor: false,
-      foto: true,
-      orcamento: true
-    },
-    {
-      id: '4',
-      processo:'4',
-      ocorrencia: '90123456',
-      alimentador: '54564',
-      situacao: "Novo",
-      idSituacao: 0,
-      localidadade: "Tocantis",
-      abertura: "10/12/2021",
-      ultimaAcao:"08/03/2022",
-      pop: true,
-      bo: true,
-      condutor: true,
-      foto: false,
-      orcamento: false
-    }, 
-  ]
-  )
-=======
   
   let arrProcesses = []
   let rangeYear = ['2019','2020','2021', '2022', '2019']
-  let rangeSituation = ['Novo', 'Cancelado' , 'Em Andamento' , 'Em Andamento', 'Novo']
+  let rangeSituation = [1, 2, 3, 4, 1]
   let rangeCondutor = ['João Antonio da Silva', 'Carlos José de Sousa' , 'Manoel Benedito Pereira' , 'Mariana Costa da Silva', 'Pedro Francisco Santana']
   let rangeAddress = [ ['Palmas' , 'TO'], ['Cuiaba' , 'MT'], ['Belo Horizonte' , 'MG'], ['Cáceres' , 'MT'], ['Rondonópolis' , 'MT']]
   let rangeBoolean = [true, false, false, true, false]
@@ -170,7 +100,6 @@ export function seedProcess(){
   
   
   processes.set('',arrProcesses )
->>>>>>> 1dc1657eab172e3d919ea11f91fb1d5b6fa5ddbd
 
 }
 export function createRefreshToken(email: string) {

@@ -196,12 +196,16 @@ app.get('/processos', (request, response)=> {
           
     results.results = arrList
 
+  
     console.log(results.results)
     return response.json(results);
   }
   else {
     results.results = processList
+
     return response.json(results);
+
+    
   }
 
 })
