@@ -180,6 +180,7 @@ app.get('/processos', (request, response)=> {
   const limit: any = parseInt(request.query.limit as string);
   const results : any = {}
   const processList: any = processes.get('');
+  const situacoesList: any = situacoes.get(''); 
 
   let arrList : Array<Object> = [] 
   
@@ -189,6 +190,7 @@ app.get('/processos', (request, response)=> {
     let count = 0
     processList.forEach(function (item : any, indice : any, array : any) {    
       if(indice >= page && count < limit ) {
+        item.situacao = situacoesList[item.idSituacao - 1].situacao
         arrList.push(item)
         count = count + 1
       }  
