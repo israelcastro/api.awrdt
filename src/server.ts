@@ -269,5 +269,9 @@ app.get('/situacoes',(request, response)=>{
   return response.json(situacao)
 })
 
+app.get('/origens',(request, response)=>{
+  const origem = origens.get('');
+  return response.json(origem)
+})
 
 app.listen(3333);

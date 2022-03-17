@@ -70,6 +70,10 @@ export function seedProcess(){
   let rangeYear = ['2019','2020','2021', '2022', '2019']
   let rangeSituation = [1, 2, 3, 4, 1]
   let rangeCondutor = ['João Antonio da Silva', 'Carlos José de Sousa' , 'Manoel Benedito Pereira' , 'Mariana Costa da Silva', 'Pedro Francisco Santana']
+  let rangeResponsavel = ['Lucas Linhares','Giovani silva',  'Marcos Silveira' , 'Andressa Rodrigues' , 'Marcia Fazza']
+  let rangeOrigem = [0,1,0,1,0]
+  let rangeModelo = ['CHEVROLET CORSA','FIAT PUNTO','VOLKSWAGEN GOL', 'HYUNDAI HB20', 'TOYOTA COROLLA']
+  let rangeUF = ['MG', 'RJ', 'MT', 'SC', 'CE']
   let rangeAddress = [ ['Palmas' , 'TO'], ['Cuiaba' , 'MT'], ['Belo Horizonte' , 'MG'], ['Cáceres' , 'MT'], ['Rondonópolis' , 'MT']] 
   let rangeBoolean = [true, false, false, true, false]
   let rangeBoolean2 = [false, false, true, true, false]
@@ -89,6 +93,12 @@ export function seedProcess(){
       pop:'' + (Math.floor(Math.random() * 99999) + 10000) ,
       bo: (Math.floor(Math.random() * 99999) + 10000) + '/' + rangeAddress[count][1] ,
       condutor: rangeCondutor[count],
+      responsavel: rangeResponsavel[count],
+      origem: rangeOrigem[count],
+      ultimoAtualizar:rangeResponsavel[count],
+      codigoOcorrencia: rangeYear[count] + (Math.floor(Math.random() * 99999) + 10000),
+      modelo: rangeModelo[count],
+      uf: rangeUF[count],
       foto: rangeBoolean[count],
       orcamento: rangeBoolean2[count]
     })    
