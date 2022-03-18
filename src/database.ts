@@ -125,7 +125,7 @@ export function seedProcess(){
   let rangeBoolean2 = [false, false, true, true, false]
   let count = 0
 
-  for (let index = 1; index <= 1000; index++) {
+  for (let index = 1; index <= 10; index++) {
     
     arrProcesses.push({
       id: index,

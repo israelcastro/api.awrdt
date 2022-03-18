@@ -219,10 +219,7 @@ app.get('/processos', (request, response)=> {
       }  
     });    
           
-    results.results = arrList
-
-  
-    console.log(results.results[9])
+    results.results = arrList  
     return response.json(results);
   }
   else {
@@ -269,9 +266,23 @@ app.get('/processos/:process', (request, response) => {
   
   const processId = request.params.process;
   let processeList: any = processes.get(''); 
+  const anexoValoresList : any = anexoValorDados.get(''); 
+
+  let arrAnexos : Array<Object> = []
   
+
   for (let process of processeList) {
-    if (process.id === processId) {
+    if (process.id == processId) {
+
+      anexoValoresList.map((anexo : any, index : number) => {
+        anexo.processoId === process.id && arrAnexos.push(anexo)
+      })
+      
+      process.anexos = arrAnexos
+
+      arrAnexos = []
+
+      
         response.json(process);
         return; 
     }
