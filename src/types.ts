@@ -78,3 +78,24 @@ type OrcamentoData = {
 
 export type Orcamento = Map<string, OrcamentoData[]>
 
+type TipoAnexoData ={
+  id: number;
+  value: string;
+}
+
+export type TipoAnexo = Map<string, TipoAnexoData[]>
+
+type OrigemAnexoData ={
+  id:number;
+  value: string;
+}
+
+export type OrigemAnexo = Map<string, OrigemAnexoData[]>
+
+type AnexoValorData ={
+  id:number;
+  tipo: string;
+  arquivo: string;
+}
+
+export type AnexoValorDados = Map<string, AnexoValorData[]>

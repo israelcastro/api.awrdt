@@ -5,7 +5,7 @@ import decode from 'jwt-decode'
 import { generateJwtAndRefreshToken } from './auth';
 import { auth } from './config';
 
-import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm, seedOrcamento} from './database';
+import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm, tipoAnexos, seedTipoAnexo, origemAnexos, seedOrigemAnexo, anexoValorDados, seedAnexoValor, seedOrcamento} from './database';
 import { CreateSessionDTO, DecodedToken } from './types';
 
 const app = express();
@@ -20,6 +20,9 @@ seedSituacao();
 seedOrigem();
 seedSituacaoForm();
 seedOrcamento();
+seedTipoAnexo();
+seedOrigemAnexo();
+seedAnexoValor();
 
 function checkAuthMiddleware(request: Request, response: Response, next: NextFunction) {
   const { authorization } = request.headers;
@@ -181,17 +184,21 @@ app.get('/processos', (request, response)=> {
   const limit: any = parseInt(request.query.limit as string);
   const results : any = {}
   const processList: any = processes.get('');
-  const situacoesList: any = situacoes.get(''); 
+  const situacoesList: any = situacoes.get('');
+  const anexoValoresDados : any = anexoValorDados.get(''); 
 
   let arrList : Array<Object> = [] 
   
   results.count = processList?.length
+
+  console.log(situacoesList)
 
   if(page >= 0) {
     let count = 0
     processList.forEach(function (item : any, indice : any, array : any) {    
       if(indice >= page && count < limit ) {
         item.situacao = situacoesList[item.idSituacao - 1].situacao
+        item.anexos = anexoValoresDados
         arrList.push(item)
         count = count + 1
       }  
@@ -275,6 +282,16 @@ app.get('/situacoes',(request, response)=>{
 app.get('/origens',(request, response)=>{
   const origem = origens.get('');
   return response.json(origem)
+})
+
+app.get('/tipoAnexos',(request, response)=>{
+  const tipoAnexo = tipoAnexos.get('');
+  return response.json(tipoAnexo);
+})
+
+app.get('/origemAnexos',(request, response)=>{
+  const origemAnexo = origemAnexos.get('');
+  return response.json(origemAnexo);
 })
 
 app.listen(3333);

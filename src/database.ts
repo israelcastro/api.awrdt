@@ -1,4 +1,4 @@
-import { Localidade, Process, RefreshTokensStore, Situacao, UsersStore, Origem, SituacaoForm, Orcamento } from "./types"
+import { Localidade, Process, RefreshTokensStore, Situacao, UsersStore, Origem, SituacaoForm, Orcamento, TipoAnexo, OrigemAnexo, AnexoValorDados } from "./types"
 import { v4 as uuid } from 'uuid'
 
 export const users: UsersStore = new Map()
@@ -8,7 +8,11 @@ export const situacoes: Situacao = new Map()
 export const situacoesForm: SituacaoForm = new Map()
 export const origens: Origem = new Map()
 export const orcamentos: Orcamento = new Map()
+export const tipoAnexos: TipoAnexo = new Map()
+export const origemAnexos: OrigemAnexo = new Map()
+export const anexoValorDados: AnexoValorDados = new Map()
 export const tokens: RefreshTokensStore = new Map()
+
 
 export function seedUserStore() {
   users.set('israel.correia@gmail.com', {
@@ -62,6 +66,32 @@ export function seedOrigem(){
     {id:0, value: 'Manual'},
     {id:1, value: 'Automático'}
     
+  ])
+}
+
+export function seedTipoAnexo(){
+  tipoAnexos.set('',[
+    {id:0, value: 'Boletim de Ocorrência'},
+    {id:1, value: 'Script (POP-007)'},
+    {id:2, value: 'Termo de Confissão de Dívida (assinado)'},
+    {id:3, value: 'Carta Extradicial (assinado)'},
+    {id:4, value: 'Outros'}
+  ])
+}
+
+export function seedOrigemAnexo(){
+  origemAnexos.set('',[
+    {id:1, value: 'OS Manutenção'},
+    {id:2, value: 'OS Tecnica'},
+    {id:3, value: 'OSs da Obra'},
+    {id:4, value: 'Local de rede/computador'}
+  ])
+}
+
+export function seedAnexoValor(){
+  anexoValorDados.set('',[
+    {id:1, tipo: 'Script (POP-007)', arquivo:'Anexo1'},
+    {id:2, tipo: 'Termo de confissão de divida', arquivo:'Anexo1'}
   ])
 }
 
