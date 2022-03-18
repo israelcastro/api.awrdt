@@ -5,7 +5,7 @@ import decode from 'jwt-decode'
 import { generateJwtAndRefreshToken } from './auth';
 import { auth } from './config';
 
-import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm} from './database';
+import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm, seedOrcamento} from './database';
 import { CreateSessionDTO, DecodedToken } from './types';
 
 const app = express();
@@ -19,6 +19,7 @@ seedLocalidade();
 seedSituacao();
 seedOrigem();
 seedSituacaoForm();
+seedOrcamento();
 
 function checkAuthMiddleware(request: Request, response: Response, next: NextFunction) {
   const { authorization } = request.headers;

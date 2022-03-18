@@ -64,3 +64,17 @@ type OrigemData ={
 }
 
 export type Origem = Map<string, OrigemData[]>
+
+type OrcamentoData = {
+  id: number,
+  processoId: number,
+  tipo: string,
+  OS: string,
+  descricao: string,
+  quantidade: number,
+  preco: number,
+  total?: number 
+}
+
+export type Orcamento = Map<string, OrcamentoData[]>
+
