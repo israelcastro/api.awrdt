@@ -89,10 +89,25 @@ export function seedOrigemAnexo(){
 }
 
 export function seedAnexoValor(){
-  anexoValorDados.set('',[
-    {id:1, tipo: 'Script (POP-007)', arquivo:'Anexo1'},
-    {id:2, tipo: 'Termo de confissão de divida', arquivo:'Anexo1'}
-  ])
+  
+  let arrAnexos = []
+  let count = 0
+  let processoId = 1
+  const rangeAnexo = [['POP 00075632/2020', 'Script (POP-007)'],['BO 2020/236985', 'Boletim de Ocorrência'],['Termo confissão.pdf','Termo de Confissão de Dívida (assinado)'], ['Carta extrajudicial.pdf','Carta Extradicial (assinado)'], ['Obra.PNG', 'Outros']]
+
+  for (let index = 1; index <= 50; index++) {
+    arrAnexos.push({
+      id: index, 
+      tipo: rangeAnexo[count][1], 
+      arquivo: rangeAnexo[count][0],
+      processoId : processoId
+    })
+
+    count ++    
+    if(count == 5) { count = 0; processoId++ }
+  }
+  
+  anexoValorDados.set('',arrAnexos)
 }
 
 export function seedProcess(){
@@ -113,7 +128,7 @@ export function seedProcess(){
   for (let index = 1; index <= 1000; index++) {
     
     arrProcesses.push({
-      id: '' + index,
+      id: index,
       processo: rangeYear[count] + (Math.floor(Math.random() * 99999) + 10000),
       ocorrencia: '' + (Math.floor(Math.random() * 99999999) + 10000000),
       alimentador: '' + (Math.floor(Math.random() * 99999) + 10000),
@@ -137,10 +152,43 @@ export function seedProcess(){
     
     if(count == 5) { count = 0 }
 
-  }
-  
+  }  
   
   processes.set('',arrProcesses )
+
+}
+
+export function seedOrcamento(){
+  
+  const arrOrcamento = []
+  const item: any = [
+    ['POSTE CONCR DUPL T 10m 300DAN',2377.31], ['ISOLADOR PILAR PORC VERT S/GRP',91.71],
+    ['CRUZETA POSTE FIBRA DE VIDRO',112.95], ['PINO NORMAL AC 344MM 35X45MM',52.59],
+    ['OPER CHAVE FUS AM E FC EMERG L',80], ['ABRIR CAVA EM TERRA NORMAL',80],
+    ['DESAT RAMAL SERVICO MONOFASICO',115], ['CONFECC BASE CON TOTAL/SOLO',48],
+    ['DESAT EST SEC EM REDE',28], ['NIVELAR CONF BT P/FASE LM',23] 
+  ] 
+  const rangeYear = ['2019','2020','2021', '2022', '2019','2019','2020','2021', '2022', '2019' ]
+  const qtd = [1,3,2,1,4,1,3,2,1,4]
+  let count = 0
+  let processoId = 1
+
+  for (let index = 1; index <= 100; index++) {
+    arrOrcamento.push({
+      id : index,
+      processoId : processoId,
+      tipo : 'Obra: '  + (Math.floor(Math.random() * 99999) + 10000), 
+      OS: 'EMT-LDVL01 ' + (Math.floor(Math.random() * 99999) + 10000) + '/' + rangeYear[count],
+      descricao: '' + item[count][0],
+      preco : item[count][1],
+      quantidade: 1
+    })
+
+    count ++    
+    if(count == 10) { count = 0; processoId++ }
+  }
+  
+  orcamentos.set('', arrOrcamento)
 
 }
 
@@ -163,40 +211,4 @@ export function invalidateRefreshToken(email: string, refreshToken: string) {
   const storedRefreshTokens = tokens.get(email) ?? []
 
   tokens.set(email, storedRefreshTokens.filter(token => token !== refreshToken));
-}
-
-export function seedOrcamento(){
-  
-  const arrOrcamento = []
-  const item: any = [
-    ['POSTE CONCR DUPL T 10m 300DAN',2377.31], ['ISOLADOR PILAR PORC VERT S/GRP',91.71],
-    ['CRUZETA POSTE FIBRA DE VIDRO',112.95], ['PINO NORMAL AC 344MM 35X45MM',52.59],
-    ['OPER CHAVE FUS AM E FC EMERG L',80], ['ABRIR CAVA EM TERRA NORMAL',80],
-    ['DESAT RAMAL SERVICO MONOFASICO',115], ['CONFECC BASE CON TOTAL/SOLO',48],
-    ['DESAT EST SEC EM REDE',28], ['NIVELAR CONF BT P/FASE LM',23] 
-  ] 
-  const rangeYear = ['2019','2020','2021', '2022', '2019','2019','2020','2021', '2022', '2019' ]
-  const qtd = [1,3,2,1,4,1,3,2,1,4]
-  let count = 0
-  let processoId = 1
-
-  for (let index = 1; index <= 20; index++) {
-    arrOrcamento.push({
-      id : index,
-      processoId : processoId,
-      tipo : 'Obra: '  + (Math.floor(Math.random() * 99999) + 10000), 
-      OS: 'EMT-LDVL01 ' + (Math.floor(Math.random() * 99999) + 10000) + '/' + rangeYear[count],
-      descricao: '' + item[count][0],
-      preco : item[count][1],
-      quantidade: 1
-    })
-
-    count ++    
-    if(count == 10) { count = 0; processoId++ }
-  }
-
-  console.log(arrOrcamento)
-
-  orcamentos.set('', arrOrcamento)
-
 }

@@ -19,7 +19,7 @@ export type DecodedToken = {
 }
 
 type ProcessData = {
-    id: string,
+    id: number,
     processo:string,
     ocorrencia: string,
     alimentador: string,
@@ -96,6 +96,7 @@ type AnexoValorData ={
   id:number;
   tipo: string;
   arquivo: string;
+  processoId: number;
 }
 
 export type AnexoValorDados = Map<string, AnexoValorData[]>

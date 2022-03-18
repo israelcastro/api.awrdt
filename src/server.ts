@@ -5,7 +5,7 @@ import decode from 'jwt-decode'
 import { generateJwtAndRefreshToken } from './auth';
 import { auth } from './config';
 
-import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm, tipoAnexos, seedTipoAnexo, origemAnexos, seedOrigemAnexo, anexoValorDados, seedAnexoValor, seedOrcamento} from './database';
+import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm, tipoAnexos, seedTipoAnexo, origemAnexos, seedOrigemAnexo, anexoValorDados, seedAnexoValor, seedOrcamento, orcamentos} from './database';
 import { CreateSessionDTO, DecodedToken } from './types';
 
 const app = express();
@@ -185,20 +185,35 @@ app.get('/processos', (request, response)=> {
   const results : any = {}
   const processList: any = processes.get('');
   const situacoesList: any = situacoes.get('');
-  const anexoValoresDados : any = anexoValorDados.get(''); 
+  const anexoValoresList : any = anexoValorDados.get(''); 
+  const orcamentoList : any = orcamentos.get('');
 
   let arrList : Array<Object> = [] 
+  let arrAnexos : Array<Object> = []
+  let arrOrcamentos : Array<Object> = []
   
   results.count = processList?.length
 
-  console.log(situacoesList)
+  
 
   if(page >= 0) {
     let count = 0
     processList.forEach(function (item : any, indice : any, array : any) {    
       if(indice >= page && count < limit ) {
-        item.situacao = situacoesList[item.idSituacao - 1].situacao
-        item.anexos = anexoValoresDados
+        
+        anexoValoresList.map((anexo : any, index : number) => {
+          anexo.processoId === item.id && arrAnexos.push(anexo)
+        })
+
+        orcamentoList.map((orcamento : any, index : number) => {
+          orcamento.processoId === item.id && arrOrcamentos.push(orcamento)
+        })
+
+        item.anexos = arrAnexos
+        item.orcamentos = arrOrcamentos
+        arrAnexos = []
+        arrOrcamentos = []
+
         arrList.push(item)
         count = count + 1
       }  
@@ -207,15 +222,12 @@ app.get('/processos', (request, response)=> {
     results.results = arrList
 
   
-    console.log(results.results)
+    console.log(results.results[9])
     return response.json(results);
   }
   else {
     results.results = processList
-
-    return response.json(results);
-
-    
+    return response.json(results);    
   }
 
 })
