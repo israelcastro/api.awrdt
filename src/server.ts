@@ -5,7 +5,7 @@ import decode from 'jwt-decode'
 import { generateJwtAndRefreshToken } from './auth';
 import { auth } from './config';
 
-import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm, tipoAnexos, seedTipoAnexo, origemAnexos, seedOrigemAnexo, anexoValorDados, seedAnexoValor, seedOrcamento, orcamentos} from './database';
+import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm, tipoAnexos, seedTipoAnexo, origemAnexos, seedOrigemAnexo, anexoValorDados, seedAnexoValor, seedOrcamento, orcamentos, tipoCobrancas, seedTipoCobranca, seedSucessoCobranca, sucessoCobrancas} from './database';
 import { CreateSessionDTO, DecodedToken } from './types';
 
 const app = express();
@@ -23,6 +23,8 @@ seedOrcamento();
 seedTipoAnexo();
 seedOrigemAnexo();
 seedAnexoValor();
+seedTipoCobranca();
+seedSucessoCobranca();
 
 function checkAuthMiddleware(request: Request, response: Response, next: NextFunction) {
   const { authorization } = request.headers;
@@ -315,6 +317,16 @@ app.get('/tipoAnexos',(request, response)=>{
 app.get('/origemAnexos',(request, response)=>{
   const origemAnexo = origemAnexos.get('');
   return response.json(origemAnexo);
+})
+
+app.get('/tipoCobrancas', (request, response)=>{
+  const tipoCobranca = tipoCobrancas.get('');
+  return response.json(tipoCobranca)
+})
+
+app.get('/sucessoCobrancas', (request, response)=>{
+  const sucessoCobranca = sucessoCobrancas.get('');
+  return response.json(sucessoCobranca)
 })
 
 app.listen(3333);

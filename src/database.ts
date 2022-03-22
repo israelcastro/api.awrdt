@@ -1,4 +1,4 @@
-import { Localidade, Process, RefreshTokensStore, Situacao, UsersStore, Origem, SituacaoForm, Orcamento, TipoAnexo, OrigemAnexo, AnexoValorDados } from "./types"
+import { Localidade, Process, RefreshTokensStore, Situacao, UsersStore, Origem, SituacaoForm, Orcamento, TipoAnexo, OrigemAnexo, AnexoValorDados, TipoCobranca, SucessoCobranca } from "./types"
 import { v4 as uuid } from 'uuid'
 
 export const users: UsersStore = new Map()
@@ -11,6 +11,8 @@ export const orcamentos: Orcamento = new Map()
 export const tipoAnexos: TipoAnexo = new Map()
 export const origemAnexos: OrigemAnexo = new Map()
 export const anexoValorDados: AnexoValorDados = new Map()
+export const tipoCobrancas: TipoCobranca = new Map()
+export const sucessoCobrancas: SucessoCobranca = new Map()
 export const tokens: RefreshTokensStore = new Map()
 
 
@@ -69,6 +71,22 @@ export function seedOrigem(){
   ])
 }
 
+export function seedTipoCobranca(){
+  tipoCobrancas.set('',[
+    
+    {id:1, value: 'Email'},
+    {id:2, value: 'Contato Telefonico'},
+    {id:3, value: 'Outros'}
+    
+  ])
+}
+
+export function seedSucessoCobranca(){
+  sucessoCobrancas.set('',[
+    {id:1, value: 'Sim'},
+    {id:2, value: 'Não'}
+  ])
+}
 export function seedTipoAnexo(){
   tipoAnexos.set('',[
     {id:0, value: 'Boletim de Ocorrência'},

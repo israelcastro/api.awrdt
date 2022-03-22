@@ -100,3 +100,17 @@ type AnexoValorData ={
 }
 
 export type AnexoValorDados = Map<string, AnexoValorData[]>
+
+type TipoCobrancaData ={
+  id:number;
+  value: string;
+}
+
+export type TipoCobranca = Map<string, TipoAnexoData[]>
+
+type SucessoCobrancaData ={
+  id:number;
+  value: string;
+}
+
+export type SucessoCobranca = Map<string, SucessoCobrancaData[]>
