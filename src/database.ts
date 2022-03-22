@@ -246,18 +246,21 @@ export function seedObra() {
       obraId : '00001',
       processoId: 1,
       total : 5538,
+      subtotal: 1000,
       items : arrObras      
     },
     {
       obraId : '00002',
       processoId: 1,
       total : 5538,
+      subtotal: 1000,
       items : arrObras
     },
     {
       obraId : '00003',
       processoId: 1,
       total : 8349,
+      subtotal: 1000,
       items : arrObras
     },
   ])

@@ -119,6 +119,7 @@ type ObraData = {
   obraId : string,
   processoId: number,
   total : number,
+  subtotal : number,
   items : Array<Object>
 }
 
