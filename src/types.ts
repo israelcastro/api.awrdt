@@ -67,6 +67,7 @@ export type Origem = Map<string, OrigemData[]>
 
 type OrcamentoData = {
   id: number,
+  obraId: string,
   processoId: number,
   tipo: string,
   OS: string,
@@ -114,3 +115,11 @@ type SucessoCobrancaData ={
 }
 
 export type SucessoCobranca = Map<string, SucessoCobrancaData[]>
+type ObraData = {
+  obraId : string,
+  processoId: number,
+  total : number,
+  items : Array<Object>
+}
+
+export type Obra = Map<string, ObraData[]>

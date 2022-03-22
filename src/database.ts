@@ -1,4 +1,4 @@
-import { Localidade, Process, RefreshTokensStore, Situacao, UsersStore, Origem, SituacaoForm, Orcamento, TipoAnexo, OrigemAnexo, AnexoValorDados, TipoCobranca, SucessoCobranca } from "./types"
+import { Localidade, Process, RefreshTokensStore, Situacao, UsersStore, Origem, SituacaoForm, Orcamento, TipoAnexo, OrigemAnexo, AnexoValorDados, Obra, TipoCobranca, SucessoCobranca } from "./types"
 import { v4 as uuid } from 'uuid'
 
 export const users: UsersStore = new Map()
@@ -8,6 +8,7 @@ export const situacoes: Situacao = new Map()
 export const situacoesForm: SituacaoForm = new Map()
 export const origens: Origem = new Map()
 export const orcamentos: Orcamento = new Map()
+export const obras: Obra = new Map()
 export const tipoAnexos: TipoAnexo = new Map()
 export const origemAnexos: OrigemAnexo = new Map()
 export const anexoValorDados: AnexoValorDados = new Map()
@@ -190,24 +191,76 @@ export function seedOrcamento(){
   const qtd = [1,3,2,1,4,1,3,2,1,4]
   let count = 0
   let processoId = 1
+  let obraId = 1
 
   for (let index = 1; index <= 100; index++) {
     arrOrcamento.push({
       id : index,
+      obraId: '0000' + obraId,
       processoId : processoId,
       tipo : 'Obra: '  + (Math.floor(Math.random() * 99999) + 10000), 
       OS: 'EMT-LDVL01 ' + (Math.floor(Math.random() * 99999) + 10000) + '/' + rangeYear[count],
       descricao: '' + item[count][0],
       preco : item[count][1],
-      quantidade: 1
+      quantidade: qtd[count]
     })
 
-    count ++    
-    if(count == 10) { count = 0; processoId++ }
+    count ++ 
+    if(count == 5) { obraId++ }   
+    if(count == 10) { count = 0; processoId++; }
   }
   
   orcamentos.set('', arrOrcamento)
+}
 
+export function seedObra() {
+  
+  let arrObras = []
+  const item: any = [
+    ['POSTE CONCR DUPL T 10m 300DAN',2377.31], ['ISOLADOR PILAR PORC VERT S/GRP',91.71],
+    ['CRUZETA POSTE FIBRA DE VIDRO',112.95], ['PINO NORMAL AC 344MM 35X45MM',52.59],
+    ['OPER CHAVE FUS AM E FC EMERG L',80], ['ABRIR CAVA EM TERRA NORMAL',80],
+    ['DESAT RAMAL SERVICO MONOFASICO',115], ['CONFECC BASE CON TOTAL/SOLO',48],
+    ['DESAT EST SEC EM REDE',28], ['NIVELAR CONF BT P/FASE LM',23] 
+  ] 
+  const rangeYear = ['2019','2020','2021', '2022', '2019','2019','2020','2021', '2022', '2019' ]
+  const qtd = [1,3,2,1,4,1,3,2,1,4]
+  let count = 0
+
+  for (let index = 1; index <= 10; index++) {
+    arrObras.push(
+      {
+        tipo : 'Obra: '  + (Math.floor(Math.random() * 99999) + 10000), 
+        OS: 'EMT-LDVL01 ' + (Math.floor(Math.random() * 99999) + 10000) + '/' + rangeYear[count],
+        descricao: '' + item[count][0],
+        preco : item[count][1],
+        quantidade: qtd[count]
+      }
+    )
+    count ++
+    if(count == 10) { count = 0 }
+  }
+
+  obras.set('', [
+    {
+      obraId : '00001',
+      processoId: 1,
+      total : 5538,
+      items : arrObras      
+    },
+    {
+      obraId : '00002',
+      processoId: 1,
+      total : 5538,
+      items : arrObras
+    },
+    {
+      obraId : '00003',
+      processoId: 1,
+      total : 8349,
+      items : arrObras
+    },
+  ])
 }
 
 export function createRefreshToken(email: string) {

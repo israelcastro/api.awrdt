@@ -5,7 +5,7 @@ import decode from 'jwt-decode'
 import { generateJwtAndRefreshToken } from './auth';
 import { auth } from './config';
 
-import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm, tipoAnexos, seedTipoAnexo, origemAnexos, seedOrigemAnexo, anexoValorDados, seedAnexoValor, seedOrcamento, orcamentos, tipoCobrancas, seedTipoCobranca, seedSucessoCobranca, sucessoCobrancas} from './database';
+import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm, tipoAnexos, seedTipoAnexo, origemAnexos, seedOrigemAnexo, anexoValorDados, seedAnexoValor, seedOrcamento, orcamentos, tipoCobrancas, seedTipoCobranca, seedSucessoCobranca, sucessoCobrancas, obras, seedObra} from './database';
 import { CreateSessionDTO, DecodedToken } from './types';
 
 const app = express();
@@ -25,6 +25,7 @@ seedOrigemAnexo();
 seedAnexoValor();
 seedTipoCobranca();
 seedSucessoCobranca();
+seedObra();
 
 function checkAuthMiddleware(request: Request, response: Response, next: NextFunction) {
   const { authorization } = request.headers;
@@ -189,6 +190,7 @@ app.get('/processos', (request, response)=> {
   const situacoesList: any = situacoes.get('');
   const anexoValoresList : any = anexoValorDados.get(''); 
   const orcamentoList : any = orcamentos.get('');
+  const situacaoList : any = situacoes.get('');
 
   let arrList : Array<Object> = [] 
   let arrAnexos : Array<Object> = []
@@ -210,6 +212,8 @@ app.get('/processos', (request, response)=> {
         orcamentoList.map((orcamento : any, index : number) => {
           orcamento.processoId === item.id && arrOrcamentos.push(orcamento)
         })
+        
+        item.situacao = situacaoList[item.idSituacao - 1]      
 
         item.anexos = arrAnexos
         item.orcamentos = arrOrcamentos
@@ -238,9 +242,7 @@ app.get('/processlist', (request, response)=>{
   const results : any = {}
   const processList: any = processes.get('');
 
-  let arrList : Array<Object> = []
-
-   
+  let arrList : Array<Object> = []   
 
   if(page >= 0) {
     let count = 0
@@ -269,9 +271,13 @@ app.get('/processos/:process', (request, response) => {
   const processId = request.params.process;
   let processeList: any = processes.get(''); 
   const anexoValoresList : any = anexoValorDados.get(''); 
+  const orcamentoList : any = orcamentos.get('');
+  const obrasList : any = obras.get('');
+
+  
 
   let arrAnexos : Array<Object> = []
-  
+  let arrOrcamentos : Array<Object> = []
 
   for (let process of processeList) {
     if (process.id == processId) {
@@ -279,14 +285,19 @@ app.get('/processos/:process', (request, response) => {
       anexoValoresList.map((anexo : any, index : number) => {
         anexo.processoId === process.id && arrAnexos.push(anexo)
       })
-      
+
+      obrasList.map((obra : any, index : number) => {
+        obra.processoId === process.id && arrOrcamentos.push(obra)
+      })
+
+            
       process.anexos = arrAnexos
+      process.obras = arrOrcamentos
 
       arrAnexos = []
-
-      
-        response.json(process);
-        return; 
+      arrOrcamentos = []
+      response.json(process);
+      return; 
     }
   }
 
