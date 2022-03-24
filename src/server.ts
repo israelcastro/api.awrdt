@@ -5,7 +5,7 @@ import decode from 'jwt-decode'
 import { generateJwtAndRefreshToken } from './auth';
 import { auth } from './config';
 
-import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm, tipoAnexos, seedTipoAnexo, origemAnexos, seedOrigemAnexo, anexoValorDados, seedAnexoValor, seedOrcamento, orcamentos, tipoCobrancas, seedTipoCobranca, seedSucessoCobranca, sucessoCobrancas, obras, seedObra} from './database';
+import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken, processes, seedProcess, localidades, seedLocalidade, seedSituacao, situacoes, seedOrigem, origens, seedSituacaoForm, situacoesForm, tipoAnexos, seedTipoAnexo, origemAnexos, seedOrigemAnexo, anexoValorDados, seedAnexoValor, seedOrcamento, orcamentos, tipoCobrancas, seedTipoCobranca, seedSucessoCobranca, sucessoCobrancas, obras, seedObra, seedNegociacao, necociacoes} from './database';
 import { CreateSessionDTO, DecodedToken } from './types';
 
 const app = express();
@@ -26,6 +26,7 @@ seedAnexoValor();
 seedTipoCobranca();
 seedSucessoCobranca();
 seedObra();
+seedNegociacao();
 
 function checkAuthMiddleware(request: Request, response: Response, next: NextFunction) {
   const { authorization } = request.headers;
@@ -273,11 +274,13 @@ app.get('/processos/:process', (request, response) => {
   const anexoValoresList : any = anexoValorDados.get(''); 
   const orcamentoList : any = orcamentos.get('');
   const obrasList : any = obras.get('');
+  const negociacaoList : any = necociacoes.get('');
 
   
 
   let arrAnexos : Array<Object> = []
   let arrOrcamentos : Array<Object> = []
+  let arrNegociacao : Array<Object> = []
 
   for (let process of processeList) {
     if (process.id == processId) {
@@ -290,9 +293,14 @@ app.get('/processos/:process', (request, response) => {
         obra.processoId === process.id && arrOrcamentos.push(obra)
       })
 
+      negociacaoList.map((negociacao : any, index : number) => {
+        negociacao.idProcesso === process.id && arrNegociacao.push(negociacao)
+      })
+
             
       process.anexos = arrAnexos
       process.obras = arrOrcamentos
+      process.negociacao = arrNegociacao[0]
 
       arrAnexos = []
       arrOrcamentos = []

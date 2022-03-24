@@ -115,12 +115,28 @@ type SucessoCobrancaData ={
 }
 
 export type SucessoCobranca = Map<string, SucessoCobrancaData[]>
+
 type ObraData = {
   obraId : string,
   processoId: number,
   total : number,
-  subtotal : number,
+  subtotal: number,
   items : Array<Object>
 }
 
 export type Obra = Map<string, ObraData[]>
+
+type NegociacaoData = {
+  id: number,
+  tipo: string,
+  idProcesso: number,
+  totalParcelas: number,
+  totalOrcado: number,
+  totalPago: number,
+  totalPendente: number,
+  cobranca: Array<Object>
+}
+
+export type Negociacao = Map<string, NegociacaoData[]>
+
+

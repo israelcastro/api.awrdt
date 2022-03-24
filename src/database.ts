@@ -1,4 +1,4 @@
-import { Localidade, Process, RefreshTokensStore, Situacao, UsersStore, Origem, SituacaoForm, Orcamento, TipoAnexo, OrigemAnexo, AnexoValorDados, Obra, TipoCobranca, SucessoCobranca } from "./types"
+import { Localidade, Process, RefreshTokensStore, Situacao, UsersStore, Origem, SituacaoForm, Orcamento, TipoAnexo, OrigemAnexo, AnexoValorDados, Obra, TipoCobranca, SucessoCobranca, Negociacao } from "./types"
 import { v4 as uuid } from 'uuid'
 
 export const users: UsersStore = new Map()
@@ -15,6 +15,7 @@ export const anexoValorDados: AnexoValorDados = new Map()
 export const tipoCobrancas: TipoCobranca = new Map()
 export const sucessoCobrancas: SucessoCobranca = new Map()
 export const tokens: RefreshTokensStore = new Map()
+export const necociacoes: Negociacao = new Map()
 
 
 export function seedUserStore() {
@@ -264,6 +265,80 @@ export function seedObra() {
       items : arrObras
     },
   ])
+}
+
+export function seedNegociacao() {
+  const negociacao = [{
+    id: 1,
+    tipo: 'RED',
+    idProcesso: 1,
+    totalParcelas: 3,
+    totalOrcado: 6000,
+    totalPago: 4000,
+    totalPendente: 2000,
+    cobranca: [
+      {
+        id : 1,
+        tipo: '2022-236598 (RED 55)',
+        CDC: '6-993022',
+        dtVencimento : '15/01/2022',
+        valor: 2000,
+        situacao: 'Pago',
+        parcela: {},
+      },
+      {
+        id : 2,
+        tipo: '2022-296318 (RED 55)',
+        CDC: '6-993022',
+        dtVencimento : '15/02/2021',
+        valor: 2000,
+        situacao: 'Pago',
+        parcela: {},
+      },
+      {
+        id : 3,
+        tipo: '2022-966598 (RED 55)',
+        CDC: '6-993022',
+        dtVencimento : '15/03/2021',
+        valor: 2000,
+        situacao: 'Negociado',
+        parcela: {
+          id: 1,
+          qtdParcelas: 3,
+          parcelas: [
+            {
+              id : 1,
+              tipo: 'Fatura 6-993022 01',
+              CDC: '6-993022',
+              dtVencimento : '22/04/2021',
+              valor: 1000,
+              situacao: 'Pago',
+            },
+            {
+              id : 2,
+              tipo: 'Fatura 6-993022 02',
+              CDC: '6-993022',
+              dtVencimento : '22/04/2021',
+              valor: 1000,
+              situacao: 'Pendente',
+            },
+            {
+              id : 3,
+              tipo: 'Fatura 6-993022 03',
+              CDC: '6-993022',
+              dtVencimento : '22/04/2021',
+              valor: 1000,
+              situacao: 'Pendente',
+            }
+          ]
+        } 
+      },
+    ]
+  }]
+
+  necociacoes.set('', negociacao)
+
+
 }
 
 export function createRefreshToken(email: string) {
