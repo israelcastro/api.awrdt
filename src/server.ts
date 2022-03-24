@@ -340,4 +340,8 @@ app.get('/sucessoCobrancas', (request, response)=>{
   return response.json(sucessoCobranca)
 })
 
+app.post('/teste', (request,response)=>{
+  return response.json(request.body)
+})
+
 app.listen(3333);
