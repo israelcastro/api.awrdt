@@ -26,7 +26,7 @@ export function seedUserStore() {
     roles: ['administrator']
   })
 
-  users.set('douglas.romano@energisa.com.br', {
+  users.set('', {
     name: 'Douglas Davi',
     password: '123456',
     permissions: ['users.list', 'metrics.list'],
